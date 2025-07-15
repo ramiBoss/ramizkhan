@@ -1,59 +1,107 @@
 import './App.css';
+import ramizImage from './ramiz.jpg';
+
+const ContactItem = ({ icon, children }) => (
+  <div className="contact-item">
+    <span className="icon" role="img" aria-label="contact icon">{icon}</span>
+    {children}
+  </div>
+);
+
+const Section = ({ title, children }) => (
+  <section className="section">
+    <h2>{title}</h2>
+    {children}
+  </section>
+);
+
+const ExperienceItem = ({ company, period, achievements }) => (
+  <div className="experience-item">
+    <h3>
+      {company} <span className="period">({period})</span>
+    </h3>
+    <ul>
+      {achievements.map((achievement, index) => (
+        <li key={index}>{achievement}</li>
+      ))}
+    </ul>
+  </div>
+);
 
 function App() {
   return (
     <div className="container">
-      <h1>Ramiz Khan</h1>
-      <p className="subtitle">Senior Software Engineer at Cimpress · Bengaluru, India</p>
+      <header className="header">
+        <img src={ramizImage} alt="Ramiz Khan Profile" className="profile-image" />
+        <h1>Ramiz Khan</h1>
+        <p className="subtitle">Senior Software Engineer at Cimpress · Bengaluru, India</p>
+      </header>
 
-      <section>
-        <h2>Contact</h2>
-        <p>📞 +91 95990 49566</p>
-        <p>📧 ramizuddinboss@gmail.com</p>
-        <p>🔗 <a href="https://www.linkedin.com/in/ramiz-khan-993a83103" target="_blank">LinkedIn</a></p>
-      </section>
-
-      <section>
-        <h2>Summary</h2>
-        <p>
+      <Section title="Summary">
+        <p className="summary">
           Creative full-stack developer with 5+ years of experience building scalable software used by millions.
           Strong in systems design, product development, and backend architecture.
         </p>
-      </section>
+      </Section>
 
-      <section>
-        <h2>Experience</h2>
-        <h3>Cimpress (2020 – Present)</h3>
-        <ul>
-          <li>Redesigned the Logo Composer Engine for no-code layout creation</li>
-          <li>Implemented monetized Premium Logos and Monogram features</li>
-          <li>Dockerized services and migrated deployment to ECS</li>
-        </ul>
+      <Section title="Contact">
+        <div className="contact-grid">
+          <ContactItem icon="📞">+91 95990 49566</ContactItem>
+          <ContactItem icon="📧">ramizuddinboss@gmail.com</ContactItem>
+          <ContactItem icon="🔗">
+            <a href="https://www.linkedin.com/in/ramiz-khan-993a83103"
+               target="_blank"
+               rel="noopener noreferrer">
+              LinkedIn Profile
+            </a>
+          </ContactItem>
+          {/* Add a GitHub link! */}
+          {/* <ContactItem icon="🐙">
+            <a href="YOUR_GITHUB_URL" target="_blank" rel="noopener noreferrer">
+              GitHub
+            </a>
+          </ContactItem> */}
+        </div>
+      </Section>
 
-        <h3>RIVIGO (2017 – 2020)</h3>
-        <ul>
-          <li>Built truck service marketplace and cashbook system</li>
-          <li>Developed real-time support portal and chat system</li>
-        </ul>
-      </section>
+      <Section title="Experience">
+        <ExperienceItem
+          company="Cimpress"
+          period="2020 – Present"
+          achievements={[
+            "Redesigned the Logo Composer Engine for no-code layout creation, enhancing user flexibility and reducing development time.",
+            "Implemented monetized Premium Logos and Monogram features, significantly contributing to revenue growth.",
+            "Dockerized services and migrated deployment to AWS ECS, improving scalability and reducing operational overhead."
+          ]}
+        />
+        <ExperienceItem
+          company="RIVIGO"
+          period="2017 – 2020"
+          achievements={[
+            "Built a robust truck service marketplace and cashbook system, streamlining logistics operations.",
+            "Developed a real-time support portal and chat system, improving customer service efficiency."
+          ]}
+        />
+      </Section>
 
-      <section>
-        <h2>Education</h2>
+      <Section title="Skills">
+        <div className="skills-grid">
+          {["JavaScript", "TypeScript", "React", "Node.js", "Express.js", "Docker", "AWS", "SQL", "PostgreSQL", "MongoDB", "Redis", "Redux", "RESTful APIs", "Microservices", "System Design"]
+            .map(skill => (
+              <span key={skill} className="skill-tag">{skill}</span>
+            ))}
+        </div>
+      </Section>
+
+      <Section title="Education">
         <p>B.Tech in Computer Engineering – AMU (2012–2016)</p>
-      </section>
+      </Section>
 
-      <section>
-        <h2>Skills</h2>
-        <p>JavaScript, React, Node.js, Docker, AWS, SQL, Redis, Redux</p>
-      </section>
-
-      <section>
-        <h2>Certifications & Patents</h2>
+      <Section title="Certifications & Patents">
         <ul>
-          <li>Modern React with Redux</li>
-          <li>Patent: Techniques for Visually Rendering Characters in Design</li>
+          <li>Patent: Techniques for Visually Rendering Characters in Design (US Patent)</li>
         </ul>
-      </section>
+      </Section>
     </div>
   );
 }
