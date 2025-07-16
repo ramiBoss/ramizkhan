@@ -7,9 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+dist
 dist-ssr
 *.local
+
+# Environment files
+.env
+.env.local
+.env.*.local
 
 # Editor directories and files
 .vscode/*
@@ -22,5 +29,21 @@ dist-ssr
 *.sln
 *.sw?
 
-# gh-pages cache
+# Build output
+/build
+/dist
+/out
+
+# Cache directories
+.cache
 node_modules/.cache/
+.npm
+.eslintcache
+
+# Coverage directory
+/coverage
+
+# Misc
+.DS_Store
+*.pem
+Thumbs.db
