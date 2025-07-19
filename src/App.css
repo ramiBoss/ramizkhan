@@ -1,14 +1,14 @@
 :root {
-  --primary-color: #2b6cb0; /* A deep, professional blue */
-  --accent-color: #63b3ed; /* A brighter, sky blue for highlights */
-  --text-dark: #2d3748; /* Darker text for readability */
-  --text-medium: #4a5568; /* Slightly lighter body text */
-  --text-light: #718096; /* For subtle text, like periods */
-  --background-light: #f0f4f8; /* Premium light gray-blue background */
-  --card-background: #ffffff;
-  --border-color: #ebf4ff; /* Light blue for borders/dividers */
-  --shadow-light: rgba(0, 0, 0, 0.07);
-  --shadow-medium: rgba(0, 0, 0, 0.12);
+  --primary-color: #2c3e50; /* Deep blue-gray */
+  --accent-color: #3498db; /* Vibrant blue */
+  --text-dark: #1a1a1a; /* Near black */
+  --text-medium: #505050; /* Dark gray */
+  --text-light: #8c8c8c; /* Medium gray */
+  --background-light: #f5f7fa; /* Light blue-gray */
+  --card-background: #ffffff; /* Pure white */
+  --border-color: #e6e9ec; /* Soft gray border */
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
 }
 
 body {

@@ -1,10 +1,65 @@
 import './App.css';
 import ramizImage from './ramiz.jpg';
 
-const ContactItem = ({ icon, children }) => (
+const profileData = {
+  name: "Ramiz Khan",
+  title: "Senior Software Engineer at Cimpress · Bengaluru, India",
+  image: ramizImage,
+  summary: `Experienced full-stack developer with 8+ years of building scalable software across logistics, design, and e-commerce platforms. 
+            Skilled in leading complex backend systems and delivering high-performance, user-focused applications. 
+            Passionate about creating impactful tools from real-time support systems to no-code design platforms—that drive efficiency and enhance user experience.`
+};
+
+const contactData = [
+  { icon: "📞", content: "+91 95990 49566" },
+  { icon: "📧", content: "ramizuddinboss@gmail.com" },
+  { icon: "🔗", content: "LinkedIn Profile", url: "https://www.linkedin.com/in/ramiz-khan-993a83103" }
+];
+
+const experienceData = [
+  {
+    company: "Cimpress",
+    jobTitle: "Senior Software Engineer",
+    period: "2021 – Present",
+    achievements: [
+      "Led the development of a no-code logo design tool, enhancing user experience and reducing design time by 50%.",
+      "Architected and implemented a microservices-based backend system, improving scalability and maintainability.",
+      "Optimized database queries and introduced caching strategies, resulting in a 30% performance improvement."
+    ]
+  },
+  {
+    company: "Cimpress",
+    jobTitle: "Software Engineer",
+    period: "2020 – 2021",
+    achievements: [
+      "Redesigned the Logo Composer Engine for no-code layout creation, enhancing user flexibility and reducing development time.",
+      "Implemented monetized Premium Logos and Monogram features, significantly contributing to revenue growth.",
+      "Dockerized services and migrated deployment to AWS ECS, improving scalability and reducing operational overhead."
+    ]
+  },
+  {
+    company: "RIVIGO",
+    jobTitle: "Software Engineer",
+    period: "2017 – 2020",
+    achievements: [
+      "Built a robust truck service marketplace and cashbook system, streamlining logistics operations.",
+      "Developed a real-time support portal and chat system, improving customer service efficiency."
+    ]
+  }
+];
+
+const skillsData = [
+  "JavaScript", "TypeScript", "React", "Node.js", "Express.js", "Docker", 
+  "AWS", "SQL", "PostgreSQL", "MongoDB", "Redis", "Redux", 
+  "RESTful APIs", "Microservices", "System Design"
+];
+
+const ContactItem = ({ icon, children, url }) => (
   <div className="contact-item">
     <span className="icon" role="img" aria-label="contact icon">{icon}</span>
-    {children}
+    {url ? (
+      <a href={url} target="_blank" rel="noopener noreferrer">{children}</a>
+    ) : children}
   </div>
 );
 
@@ -15,11 +70,12 @@ const Section = ({ title, children }) => (
   </section>
 );
 
-const ExperienceItem = ({ company, period, achievements }) => (
+const ExperienceItem = ({ company, jobTitle, period, achievements }) => (
   <div className="experience-item">
     <h3>
       {company} <span className="period">({period})</span>
     </h3>
+    <p className="job-title">{jobTitle}</p>
     <ul>
       {achievements.map((achievement, index) => (
         <li key={index}>{achievement}</li>
@@ -28,76 +84,66 @@ const ExperienceItem = ({ company, period, achievements }) => (
   </div>
 );
 
+const Header = ({ name, title, image }) => (
+  <header className="header">
+    <img src={image} alt={`${name} Profile`} className="profile-image" />
+    <h1>{name}</h1>
+    <p className="subtitle">{title}</p>
+  </header>
+);
+
 function App() {
   return (
     <div className="container">
-      <header className="header">
-        <img src={ramizImage} alt="Ramiz Khan Profile" className="profile-image" />
-        <h1>Ramiz Khan</h1>
-        <p className="subtitle">Senior Software Engineer at Cimpress · Bengaluru, India</p>
+      <header className="header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ flex: 1 }}>
+          <h1 style={{ textAlign: 'left' }}>{profileData.name}</h1>
+          <p className="subtitle" style={{ textAlign: 'left' }}>{profileData.title}</p>
+        </div>
+        <img 
+          src={profileData.image} 
+          alt={`${profileData.name} Profile`} 
+          className="profile-image" 
+          style={{ marginLeft: '2rem' }}
+        />
       </header>
 
       <Section title="Summary">
-        <p className="summary">
-          Creative full-stack developer with 5+ years of experience building scalable software used by millions.
-          Strong in systems design, product development, and backend architecture.
-        </p>
+        <p className="summary">{profileData.summary}</p>
       </Section>
 
       <Section title="Contact">
         <div className="contact-grid">
-          <ContactItem icon="📞">+91 95990 49566</ContactItem>
-          <ContactItem icon="📧">ramizuddinboss@gmail.com</ContactItem>
-          <ContactItem icon="🔗">
-            <a href="https://www.linkedin.com/in/ramiz-khan-993a83103"
-               target="_blank"
-               rel="noopener noreferrer">
-              LinkedIn Profile
-            </a>
-          </ContactItem>
-          {/* Add a GitHub link! */}
-          {/* <ContactItem icon="🐙">
-            <a href="YOUR_GITHUB_URL" target="_blank" rel="noopener noreferrer">
-              GitHub
-            </a>
-          </ContactItem> */}
+          {contactData.map((contact, index) => (
+            <ContactItem key={index} icon={contact.icon} url={contact.url}>
+              {contact.content}
+            </ContactItem>
+          ))}
         </div>
       </Section>
 
       <Section title="Experience">
-        <ExperienceItem
-          company="Cimpress"
-          period="2020 – Present"
-          achievements={[
-            "Redesigned the Logo Composer Engine for no-code layout creation, enhancing user flexibility and reducing development time.",
-            "Implemented monetized Premium Logos and Monogram features, significantly contributing to revenue growth.",
-            "Dockerized services and migrated deployment to AWS ECS, improving scalability and reducing operational overhead."
-          ]}
-        />
-        <ExperienceItem
-          company="RIVIGO"
-          period="2017 – 2020"
-          achievements={[
-            "Built a robust truck service marketplace and cashbook system, streamlining logistics operations.",
-            "Developed a real-time support portal and chat system, improving customer service efficiency."
-          ]}
-        />
+        {experienceData.map((exp, index) => (
+          <ExperienceItem key={index} {...exp} />
+        ))}
       </Section>
 
       <Section title="Skills">
         <div className="skills-grid">
-          {["JavaScript", "TypeScript", "React", "Node.js", "Express.js", "Docker", "AWS", "SQL", "PostgreSQL", "MongoDB", "Redis", "Redux", "RESTful APIs", "Microservices", "System Design"]
-            .map(skill => (
-              <span key={skill} className="skill-tag">{skill}</span>
-            ))}
+          {skillsData.map(skill => (
+            <span key={skill} className="skill-tag">{skill}</span>
+          ))}
         </div>
       </Section>
 
       <Section title="Education">
-        <p>B.Tech in Computer Engineering – AMU (2012–2016)</p>
+        <ul>
+          <li>B.Tech in Computer Engineering – AMU (2012–2016)</li>
+          <li>Diploma in Computer Engineering – AMU (2009–2012)</li>
+        </ul>
       </Section>
 
-      <Section title="Certifications & Patents">
+      <Section title="Patent">
         <ul>
           <li>Patent: Techniques for Visually Rendering Characters in Design (US Patent)</li>
         </ul>
