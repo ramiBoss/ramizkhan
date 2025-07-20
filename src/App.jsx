@@ -5,9 +5,11 @@ const profileData = {
   name: "Ramiz Khan",
   title: "Senior Software Engineer at Cimpress · Bengaluru, India",
   image: ramizImage,
-  summary: `Experienced full-stack developer with 8+ years of building scalable software across logistics, design, and e-commerce platforms. 
-            Skilled in leading complex backend systems and delivering high-performance, user-focused applications. 
-            Passionate about creating impactful tools from real-time support systems to no-code design platforms—that drive efficiency and enhance user experience.`
+  summary: `I’m passionate about building efficient, scalable, and elegant software solutions. With a love for simplicity, 
+  I enjoy turning complex problems into solutions that are easy to build, use, and maintain. 
+  I’m always eager to learn new skills and explore emerging technologies to enhance my work. 
+  I value sharing knowledge, supporting my team, and helping others grow. 
+  I thrive in cross-functional environments and am equally confident working independently.`
 };
 
 const contactData = [
